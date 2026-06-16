@@ -107,9 +107,9 @@ sequenceDiagram
     autonumber
     actor User
     participant Frontend as Frontend Interface
-    participant Controller as Express Endpoint / Next Server Action
-    participant Gemini as Google Gemini AI (1.5 Flash)
-    database DB as Database (Postgres or MongoDB)
+    participant Controller as "Express Endpoint / Next Server Action"
+    participant Gemini as "Google Gemini AI (1.5 Flash)"
+    database DB as "Database (Postgres or MongoDB)"
     
     User->>Frontend: Select receipt image and click upload
     Frontend->>Controller: POST image payload (Base64 or memory stream)
@@ -127,10 +127,10 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Scheduler as Scheduler Engine (Inngest Cron / node-cron)
-    participant Worker as Background Execution Worker
-    database DB as Database (PostgreSQL / MongoDB)
-    participant Email as Email Dispatcher (Resend / Nodemailer)
+    participant Scheduler as "Scheduler Engine (Inngest Cron / node-cron)"
+    participant Worker as "Background Execution Worker"
+    database DB as "Database (PostgreSQL / MongoDB)"
+    participant Email as "Email Dispatcher (Resend / Nodemailer)"
     
     Scheduler->>Worker: Trigger scheduled routine (Daily/Monthly)
     Worker->>DB: Query for due recurring transactions
