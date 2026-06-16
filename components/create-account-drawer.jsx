@@ -30,6 +30,7 @@ import { accountSchema } from "@/app/lib/schema";
 
 export function CreateAccountDrawer({ children }) {
   const [open, setOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const {
     register,
     handleSubmit,
@@ -59,6 +60,10 @@ export function CreateAccountDrawer({ children }) {
   };
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (newAccount) {
       toast.success("Account created successfully");
       reset();
@@ -71,6 +76,10 @@ export function CreateAccountDrawer({ children }) {
       toast.error(error.message || "Failed to create account");
     }
   }, [error]);
+
+  if (!isMounted) {
+    return <>{children}</>;
+  }
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
