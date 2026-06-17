@@ -228,8 +228,11 @@ export async function getUserTransactions(query = {}) {
 }
 
 // Scan Receipt
-export async function scanReceipt(file) {
+export async function scanReceipt(formData) {
   try {
+    const file = formData.get("file");
+    if (!file) throw new Error("No file uploaded");
+
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     // Convert File to ArrayBuffer
