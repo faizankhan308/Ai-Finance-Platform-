@@ -38,7 +38,7 @@ router.post("/scan-receipt", upload.single("receipt"), async (req, res) => {
     }
 
     // Use the Gemini Vision model (can read images)
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     // Convert image to base64 string (required by Gemini API)
     const base64Image = req.file.buffer.toString("base64");
@@ -111,7 +111,7 @@ router.post("/insights", async (req, res) => {
   try {
     const { stats, month } = req.body;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     const prompt = `
       Analyze this financial data and provide 3 concise, actionable insights.
