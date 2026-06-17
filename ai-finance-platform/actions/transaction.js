@@ -7,7 +7,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import aj from "@/lib/arcjet";
 import { request } from "@arcjet/next";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
 
 const serializeAmount = (obj) => ({
   ...obj,
@@ -233,6 +233,7 @@ export async function scanReceipt(formData) {
     const file = formData.get("file");
     if (!file) throw new Error("No file uploaded");
 
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     // Convert File to ArrayBuffer
